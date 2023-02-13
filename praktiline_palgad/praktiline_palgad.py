@@ -25,3 +25,17 @@ while True:
         elif menu==5:
             inimesed,palgad=sorteerimine(inimesed,palgad)
             print(f"sorteeritud palk on {palk} {nimi}")
+        elif menu==7:
+            inimesed,palgad=imja(inimesed,palgad)
+            print(f"imja palk on {palk} {nimi}")
+        elif menu==12:
+            palgad, inimesed=sorteerimine(palgad,inimesed)
+            print(inimesed,palgad)
+        elif menu==6:
+             inimesed ,palgad=vordsed_palgad(inimesed,palgad)
+             print(f"võrdne palk on {palk} {nimi}")
+        elif menu==13:
+            inimesed,palgad=kustuta(inimesed,palgad)
+        elif menu==14:
+            inimesed,palgad=redact(inimesed,palgad)
+            print(f"jengpkegrrg on {nimi} {palk}")
