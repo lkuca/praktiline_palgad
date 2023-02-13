@@ -1,4 +1,8 @@
+from ast import Str
+from curses.ascii import isupper
 from datetime import date, datetime
+from struct import pack
+from unicodedata import digit
 #8/02/23
 def Lisa_andmed(i:list,p:list):
     """
@@ -83,3 +87,43 @@ def vordsed_palgad(i:list,p:list):
             k=p.index(palk,k+1)
             nimi=i[k]
             print(nimi)
+def imja(i:list,p:list):
+    """
+    """
+    nimi=input("kelle tahad leida")
+    while nimi not in i:
+        nimi=input("palun kirjuta õige nimi")
+        n=i.count(nimi)
+    if n!=1:
+        print(f"siin on mõned inimesed kes nimi on {nimi}")
+        kopia=i.copy()
+        for i in range(n):
+            ind=kopia.index(nimi)
+            kopia.remove(nimi)
+            kopia.insert(ind,"")
+            print(f"{i+1} {nimi} saab {p[ind]}")
+    else:
+         ind=i.index(nimi)
+         print(f"{nimi} saab {p[ind]}")
+def kustuta(i:list,p:list):
+    """
+    """
+    kesk_palk=sum(p)/len(p)
+    print(kesk_palk)
+    v=int(input("kellel palk 1- on suurem,2-on väiksem?"))
+    if v==1:
+        for palk in p:
+            if palk>kesk_palk:
+                ind=p.index(palk)
+                p.remove(palk)
+                i.pop(ind)
+            else:
+
+                pass
+            return i,p 
+def redact(i:list,p:list):
+    """
+    """
+    ind=i.index[0]
+    i[0].isupper()+i[1:]
+    return i
