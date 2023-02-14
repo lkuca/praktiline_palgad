@@ -1,5 +1,5 @@
 from ast import Str
-from curses.ascii import isupper
+#from curses.ascii import isupper
 from datetime import date, datetime
 from struct import pack
 from unicodedata import digit
@@ -16,7 +16,7 @@ def Lisa_andmed(i:list,p:list):
         palk=int(input("sissesta palk:"))
         i.append(nimi)
         p.append(palk)
-        return i,p
+    return i,p
 def kustutamine(i:list,p:list):
     """
     param list i: inimeste järjend
@@ -78,7 +78,6 @@ def vordsed_palgad(i:list,p:list):
     """
     dublikatid=[x for x in p if p.count(x)>1]
     dublikatid=list(set(dublikatid))
-    #python govno ne kakoi eto ne high level language
     for palk in dublikatid:
         n=p.count(palk)
         k=-1
@@ -110,20 +109,89 @@ def kustuta(i:list,p:list):
     """
     kesk_palk=sum(p)/len(p)
     print(kesk_palk)
+    for palk in p:
+        if palk<kesk_palk:
+            ind=p.index(palk)
+            p.remove(palk)
+            i.pop(ind)
+            print(f"kustutatud {palk}")
+        else:
+            pass
+    return i,p 
+#def redact(i:list,p:list):
+#    """
+#    """
+#    ind=i.index[0]
+#    i[0].isupper()+i[1:]
+#    return i
+def suur_vaike(i:list,p:list):
+
+    #for j in i:
+    #    #ind=i.index[aa]       
+    #    print(f"{j}")
+
+    #tekst = "great"
+
+    #print(i[0], tekst[2])
+
+
+
+    number=int(input("naita palga number"))
     v=int(input("kellel palk 1- on suurem,2-on väiksem?"))
     if v==1:
-        for palk in p:
-            if palk>kesk_palk:
-                ind=p.index(palk)
-                p.remove(palk)
-                i.pop(ind)
-            else:
+        for g in p:
+            if g > number:
+                ind=p.index(g)
+                print(f"{g}, {i[ind]}")
+    if v==2:
+        for g in p:
+            if g < number:
+                ind=p.index(g)
+                print(f"{g}, {i[ind]}")
+def keskminepalk(i:list,p:list):
+    kesk_palk=sum(p)/len(p)
+    for palk in p:
+        if palk==kesk_palk:
+            ind=p.index(palk)
+            print(f"{kesk_palk},{i[ind]}")
+def top3(i:list,p:list):
 
-                pass
-            return i,p 
-def redact(i:list,p:list):
-    """
-    """
-    ind=i.index[0]
-    i[0].isupper()+i[1:]
-    return i
+    top1=p[0]
+    top2=p[0]
+    top3=p[0]
+    for palk in p:
+        if palk>top1:
+            top1=palk
+        elif palk>top2:
+            top2=palk
+        elif palk>top3:
+            top3=palk
+
+    print("rikkad",top1, top2, top3)
+    #vaesed
+    top1=p[0]
+    top2=p[0]
+    top3=p[0]
+    for palk in p:
+        if palk<top1:
+            top1=palk
+        elif palk<top2:
+            top2=palk
+        elif palk<top3:
+            top3=palk
+
+    print("vaesed",top1, top2, top3)
+def tulumaks():
+    tulu=int(input("palga suurus "))
+    #maksuvaba_tulu=()
+    if tulu<1200:
+        maksuvaba_tulu=500
+    elif tulu<2100:
+        maksuvaba_tulu=500-0.55556*(tulu-1200)
+    else:
+        maksuvaba_tulu=0
+
+    
+    maks=(tulu-maksuvaba_tulu) *0.20
+    netopalk=tulu-maks
+    print(f"netopalk on {netopalk}")
